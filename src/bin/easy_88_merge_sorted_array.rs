@@ -16,25 +16,16 @@ impl Solution {
         let mut p1 = m -1;
         let mut p2 = n -1;
         while end != -1 {
-            let mut target = 0;
-            if p1 != -1 {
-                target = 1;
-            }
-            if p2 != -1 {
-                if target == 0 || nums1[p1 as usize] < nums2[p2 as usize] {
-                    target = 2;
-                }
-            }
-            match target {
-                1 => {
-                    nums1[end as usize] = nums1[p1 as usize];
-                    p1 = p1 - 1;
-                },
-                2 => {
-                    nums1[end as usize] = nums2[p2 as usize];
-                    p2 = p2 -1;
-                },
-                _ => {}
+            let mut temp1 = std::i32::MIN;
+            let mut temp2 = std::i32::MIN;
+            if p1 != -1 { temp1 = nums1[p1 as usize]; }
+            if p2 != -1 { temp2 = nums2[p2 as usize]; }
+            if temp1 > temp2 {
+                p1 -= 1;
+                nums1[end as usize] = temp1;
+            } else {
+                p2 -= 1;
+                nums1[end as usize] = temp2;
             }
             end -= 1;
         }
