@@ -1,7 +1,6 @@
 
 
-
-/// Binary Tree inorder Traversal
+// 145. Binary Tree Postorder Traversal
 // Binary Tree 3
 
 
@@ -31,15 +30,15 @@ impl Solution {
         let node = root.unwrap();
         let inner = node.borrow();
         Self::travel(inner.left.as_ref(), res);
-        res.push(inner.val);
         Self::travel(inner.right.as_ref(), res);
+        res.push(inner.val);
     }
-    pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn postorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut res = Vec::new();
         Self::travel(root.as_ref(), &mut res);
         res
     }
-    pub fn inorder_traversal_with_stack(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn postorder_traversal_with_stack(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut res:Vec<i32> = Vec::new();
         let mut stack = vec![root];
         while !stack.is_empty() {
@@ -53,11 +52,16 @@ impl Solution {
                 continue;
             }
             let left = inner.left.clone();
-            stack.push(inner.right.clone());
+            let right = inner.right.clone();
             drop(inner);
             stack.push(None);
             stack.push(Some(node));
-            stack.push(left);
+            if right.is_some() {
+                stack.push(right);
+            }
+            if left.is_some() {
+                stack.push(left);
+            }
         }
         res
     }
