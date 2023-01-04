@@ -1,35 +1,17 @@
-
-
-
-
-
-
-
-
-
-
-
-
 // 24. Swap Nodes in Pairs
 // Linked List 5
 
-
-
-
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
-  pub val: i32,
-  pub next: Option<Box<ListNode>>
+    pub val: i32,
+    pub next: Option<Box<ListNode>>,
 }
 
 impl ListNode {
-  #[inline]
-  fn new(val: i32) -> Self {
-    ListNode {
-      next: None,
-      val
+    #[inline]
+    fn new(val: i32) -> Self {
+        ListNode { next: None, val }
     }
-  }
 }
 
 struct Solution {}
@@ -49,4 +31,13 @@ impl Solution {
 }
 
 fn main() {
+    println!("hello world");
+}
+#[cfg(test)]
+mod tt {
+    use super::*;
+    #[test]
+    fn hello() {
+        println!("hello world");
+    }
 }

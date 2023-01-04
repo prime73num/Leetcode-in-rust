@@ -21,28 +21,22 @@ struct Solution {}
 impl Solution {
     pub fn max_profit(prices: Vec<i32>) -> i32 {
         let mut sum = 0;
-        let mut pre = std::i32::MAX;
-        let mut trend = 0;
+        let mut max = prices[0];
+        let mut min = prices[0];
         for i in 0..prices.len() {
-            if i == prices.len()-1 {
-                if prices[i] > pre {
-                    sum += prices[i] - pre;
+            let temp = prices[i];
+            if temp < max {
+                if max > min {
+                    sum += max - min;
                 }
-            } else {
-                let mut new_trend = 0;
-                if prices[i+1] > prices[i] {
-                    new_trend = 1;
-                } else if prices[i+1] < prices[i] {
-                    new_trend = -1;
-                }
-                if new_trend!=0 && new_trend != trend {
-                    if prices[i] > pre {
-                        sum += prices[i] - pre;
-                    }
-                    pre = prices[i];
-                    trend = new_trend;
-                }
+                min = temp;
+                max = temp
             }
+            if max < temp {max = temp;}
+            if min > temp {min = temp;}
+        }
+        if max > min {
+            sum += max - min;
         }
         sum
     }
