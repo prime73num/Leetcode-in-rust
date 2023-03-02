@@ -38,4 +38,5 @@ impl Solution {
 }
 
 fn main() {
+    println!("Hello");
 }

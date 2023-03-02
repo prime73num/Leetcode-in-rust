@@ -38,7 +38,6 @@ impl Solution {
         let mut pos = &mut root;
         while pos.is_none() {
             if pos.as_ref().unwrap().borrow().val > val {
-                pos = &mut pos.as_mut().unwrap().borrow_mut().left;
             }
         }
         unimplemented!();

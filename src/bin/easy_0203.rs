@@ -16,18 +16,7 @@ impl ListNode {
 struct Solution {}
 impl Solution {
     pub fn remove_elements(mut head: Option<Box<ListNode>>, val: i32) -> Option<Box<ListNode>> {
-        let mut point = &mut head;
-        while let Some(node) = point.as_mut() {
-            point = &mut node.next;
-        }
-        while point.is_some() {
-            if point.as_ref().unwrap().val == val {
-                *point = point.take().unwrap().next;
-            } else {
-                point = &mut point.as_mut().unwrap().next;
-            }
-        }
-        head
+        todo!()
     }
 }
 
